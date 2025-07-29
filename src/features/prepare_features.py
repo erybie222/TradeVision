@@ -7,7 +7,7 @@ def prepare_features(input_path, output_path):
     for filename in os.listdir(input_path):
         if filename.endswith('.csv'):
             ticker = filename.split('.')[0]
-            df = pd.read_csv(os.path.join(input_path, filename), index_col=0, skiprows=2)
+            df = pd.read_csv(os.path.join(input_path, filename), index_col=0)
             df = df.dropna()
             
             for col in ["Open", "High", "Low", "Close", "Volume"]:

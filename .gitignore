@@ -1,1 +1,59 @@
-data/*
+# Foldery z danymi
+data/
+datasets/
+*.zip
+*.tar.gz
+
+# Modele, checkpointy
+models/
+*.h5
+*.pkl
+*.joblib
+*.pt
+*.onnx
+
+# Logi i wyniki
+logs/
+*.log
+*.csv
+*.json
+*.txt
+
+# Pliki tymczasowe
+*.tmp
+*.swp
+*.bak
+*.old
+
+# Notebooki tymczasowe
+.ipynb_checkpoints/
+
+# Pliki cache
+__pycache__/
+*.py[cod]
+*.so
+
+# Środowiska
+.venv/
+env/
+venv/
+ENV/
+
+# Configi edytorów/IDE
+.vscode/
+.idea/
+*.code-workspace
+
+# Systemowe
+.DS_Store
+Thumbs.db
+
+# Pliki testowe
+*.pytest_cache/
+.pytest_cache/
+coverage/
+
+# Pliki buildów i instalacyjne
+dist/
+build/
+*.egg-info/
