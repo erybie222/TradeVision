@@ -1,6 +1,6 @@
 import os
 import shutil
-from models.train_model import train_model
+from src.train_model import train_model
 from src.features.prepare_features import prepare_features
 from scripts.download_data import download_stock_data
 # from src.features.prepare_features import prepare_features
