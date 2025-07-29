@@ -18,3 +18,17 @@ def evaluate_model():
     plt.ylabel("Actual")
     plt.title("Confusion Matrix")
     plt.show()
+
+def plot_feature_importance(model, feature_names, top_n=20):
+    importance = model.get_booster().get_score(importance_type="gain")
+    importance_df = pd.DataFrame({
+        'Feature': list(importance.keys()),
+        'Importance': list(importance.values())
+    }).sort_values(by="Importance", ascending=False).head(top_n)
+
+    plt.figure(figsize=(10, 6))
+    plt.barh(importance_df['Feature'][::-1], importance_df['Importance'][::-1])
+    plt.title("Top Feature Importances")
+    plt.xlabel("Gain")
+    plt.tight_layout()
+    plt.show()
