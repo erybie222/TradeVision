@@ -17,7 +17,8 @@ def evaluate_model():
     plt.xlabel("Predicted")
     plt.ylabel("Actual")
     plt.title("Confusion Matrix")
-    plt.show()
+    #plt.show()
+    plt.savefig("data/eval/confusion_matrix.png")
 
 def plot_feature_importance(model, feature_names, top_n=20):
     importance = model.get_booster().get_score(importance_type="gain")
@@ -31,4 +32,5 @@ def plot_feature_importance(model, feature_names, top_n=20):
     plt.title("Top Feature Importances")
     plt.xlabel("Gain")
     plt.tight_layout()
-    plt.show()
+    #plt.show()
+    plt.savefig("data/eval/feature_importance.png")

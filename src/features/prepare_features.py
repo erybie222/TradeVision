@@ -20,5 +20,13 @@ def prepare_features(input_path, output_path):
             df['Target'] = (df['Close'].shift(-1) > df['Close']).astype(int)
             df = df.dropna()
 
+            df["Target_3day"] = (
+                df["Close"].shift(-1) + df["Close"].shift(-2) + df["Close"].shift(-3)
+            ) / 3 > df["Close"]
+
+            df["Target_3day"] = df["Target_3day"].astype(int)
+
+            df = df.iloc[:-3]
+
             df.to_csv(os.path.join(output_path, f"{ticker}_features.csv"))
             print(f"Zapisano cechy dla {ticker}")
