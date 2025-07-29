@@ -1,11 +1,10 @@
 import os
 import shutil
-from src.train_model import train_model
-from src.features.prepare_features import prepare_features
+
 from scripts.download_data import download_stock_data
-# from src.features.prepare_features import prepare_features
-# from src.models.train_model import train_model
-# from src.models.evaluate_model import evaluate_model
+from src.features.prepare_features import prepare_features
+from src.train_model import train_model
+from src.evaluate_model import evaluate_model
 
 def main():
     print("📥 [1] Pobieranie danych...")
@@ -29,10 +28,13 @@ def main():
 
     print("🧠 [3] Trenowanie modelu...")
     model_path = "models/xgb_model.pkl"
+    os.makedirs("data/eval", exist_ok=True)
     train_model(processed_path, model_path)
 
-    print("✅ Gotowe!")
+    print("📊 [4] Ewaluacja modelu...")
+    evaluate_model()
 
+    print("✅ Gotowe!")
 
 if __name__ == "__main__":
     main()

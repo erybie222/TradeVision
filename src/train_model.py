@@ -1,8 +1,8 @@
+# src/train_model.py
+import os
+import joblib
 import pandas as pd
 import xgboost as xgb
-import joblib
-import os
-from sklearn.metrics import classification_report, confusion_matrix
 from sklearn.model_selection import train_test_split
 
 def train_model(processed_path: str, model_path: str):
@@ -27,11 +27,8 @@ def train_model(processed_path: str, model_path: str):
     )
     model.fit(X_train, y_train)
 
-    y_pred = model.predict(X_test)
-    print("📊 Classification Report:")
-    print(classification_report(y_test, y_pred))
-    print("📉 Confusion Matrix:")
-    print(confusion_matrix(y_test, y_pred))
-
     joblib.dump(model, model_path)
+    X_test.to_csv("data/eval/X_test.csv", index=False)
+    pd.DataFrame({"y_test": y_test, "y_pred": model.predict(X_test)}).to_csv("data/eval/y.csv", index=False)
+
     print("✅ Model zapisany do:", model_path)
