@@ -1,5 +1,6 @@
 import os
 import shutil
+from models.train_model import train_model
 from src.features.prepare_features import prepare_features
 from scripts.download_data import download_stock_data
 # from src.features.prepare_features import prepare_features
@@ -25,6 +26,10 @@ def main():
         shutil.rmtree(processed_path)
     os.makedirs(processed_path, exist_ok=True)
     prepare_features(raw_path, processed_path)
+
+    print("🧠 [3] Trenowanie modelu...")
+    model_path = "models/xgb_model.pkl"
+    train_model(processed_path, model_path)
 
     print("✅ Gotowe!")
 
